@@ -1,0 +1,13 @@
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+export PATH="$HOME/.local/bin:$PATH"
+
+goose-migrate() {
+    source .env
+    goose -dir sql/schema postgres "$DB_URL" "$@"
+}
