@@ -35,6 +35,25 @@ return {
         vim.lsp.enable(name)
       end
 
+      vim.lsp.config("elixir_ls", {
+        -- Mason automatically puts the executable in Neovim's path
+        cmd = { "elixir-ls" },
+
+        -- The root_dir is important for Phoenix umbrella apps or standard apps
+        root_dir = require("lspconfig.util").root_pattern("mix.exs", ".git"),
+
+        settings = {
+          elixirLS = {
+            -- Dialyzer can be very slow to build the first time, set to false if it hangs
+            dialyzerEnabled = true,
+            -- Don't automatically fetch deps on every save
+            fetchDeps = false,
+            enableTestLenses = true,
+            suggestSpecs = true,
+          },
+        },
+      })
+
       -- LSP keymaps
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
