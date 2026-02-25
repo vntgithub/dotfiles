@@ -2,6 +2,8 @@ vim.g.mapleader = " "
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+vim.o.winborder = "rounded"
+
 -- Alias vim.opt to 'opt' for cleaner code below
 local opt = vim.opt
 
@@ -52,8 +54,8 @@ opt.tabstop = 2        -- Number of spaces a <Tab> counts for
 opt.smartindent = true -- Automatically insert the correct indentation on new lines
 
 --
--- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
--- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 
 local colors = {
