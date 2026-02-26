@@ -1,10 +1,16 @@
-
 -- Navigate vim panes better
 vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
 vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
 vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
 vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 
+-- Navigate to tmux panes silently
+vim.keymap.set('n', '<c-k>', function() vim.fn.system('tmux select-pane -U') end, { silent = true })
+vim.keymap.set('n', '<c-j>', function() vim.fn.system('tmux select-pane -D') end, { silent = true })
+vim.keymap.set('n', '<c-h>', function() vim.fn.system('tmux select-pane -L') end, { silent = true })
+vim.keymap.set('n', '<c-l>', function() vim.fn.system('tmux select-pane -R') end, { silent = true })
+
+-- Clear search highlights
 vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 vim.wo.number = true
 
