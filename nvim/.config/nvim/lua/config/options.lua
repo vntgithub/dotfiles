@@ -59,50 +59,50 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 
 local colors = {
-  bg       = "#222D31",
-  fg       = "#d8d8d8",
+  bg        = "#222D31",
+  fg        = "#d8d8d8",
   selection = "#2B2C2B",
-  teal     = "#1ABB9B", -- The signature Maia color
-  green    = "#7E807E",
-  red      = "#ab4642",
-  yellow   = "#f7ca88",
-  blue     = "#7cafc2",
-  magenta  = "#ba8baf",
-  grey     = "#585858",
+  teal      = "#1ABB9B", -- The signature Maia color
+  green     = "#7E807E",
+  red       = "#ab4642",
+  yellow    = "#f7ca88",
+  blue      = "#7cafc2",
+  magenta   = "#ba8baf",
+  grey      = "#585858",
 }
 
 local groups = {
   -- Base interface
-  Normal       = { fg = colors.fg, bg = colors.bg },
-  Visual       = { bg = colors.selection },
-  CursorLine   = { bg = "#2d393e" },
-  ColorColumn  = { bg = "#2d393e" },
-  LineNr       = { fg = colors.grey },
-  CursorLineNr = { fg = colors.teal, bold = true },
-  
+  Normal        = { fg = colors.fg, bg = colors.bg },
+  Visual        = { bg = colors.selection },
+  CursorLine    = { bg = "#2d393e" },
+  ColorColumn   = { bg = "#2d393e" },
+  LineNr        = { fg = colors.grey },
+  CursorLineNr  = { fg = colors.teal, bold = true },
+
   -- Search and UI
-  Search       = { fg = colors.bg, bg = colors.teal },
-  VertSplit    = { fg = colors.selection, bg = colors.bg },
-  StatusLine   = { fg = colors.fg, bg = colors.selection },
-  
+  Search        = { fg = colors.bg, bg = colors.teal },
+  VertSplit     = { fg = colors.selection, bg = colors.bg },
+  StatusLine    = { fg = colors.fg, bg = colors.selection },
+
   -- Syntax Highlighting
-  Comment      = { fg = colors.grey, italic = true },
-  Constant     = { fg = colors.blue },
-  String       = { fg = colors.yellow },
-  Function     = { fg = colors.teal },
-  Statement    = { fg = colors.magenta },
-  Keyword      = { fg = colors.magenta },
-  Type         = { fg = colors.teal },
-  Identifier   = { fg = colors.fg },
-  PreProc      = { fg = colors.yellow },
-  Special      = { fg = colors.blue },
-  Todo         = { fg = colors.bg, bg = colors.yellow, bold = true },
-  
+  Comment       = { fg = colors.grey, italic = true },
+  Constant      = { fg = colors.blue },
+  String        = { fg = colors.yellow },
+  Function      = { fg = colors.teal },
+  Statement     = { fg = colors.magenta },
+  Keyword       = { fg = colors.magenta },
+  Type          = { fg = colors.teal },
+  Identifier    = { fg = colors.fg },
+  PreProc       = { fg = colors.yellow },
+  Special       = { fg = colors.blue },
+  Todo          = { fg = colors.bg, bg = colors.yellow, bold = true },
+
   -- TreeSitter (For modern Neovim)
   ["@variable"] = { fg = colors.fg },
-  ["@function"]  = { fg = colors.teal },
-  ["@keyword"]   = { fg = colors.magenta },
-  ["@string"]    = { fg = colors.yellow },
+  ["@function"] = { fg = colors.teal },
+  ["@keyword"]  = { fg = colors.magenta },
+  ["@string"]   = { fg = colors.yellow },
 }
 
 -- Apply the colors
