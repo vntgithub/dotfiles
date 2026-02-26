@@ -54,6 +54,13 @@ return {
         },
       })
 
+    --  format on save file
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*",
+        callback = function()
+          vim.lsp.buf.format({ async = false })
+        end,
+      })
       -- LSP keymaps
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
