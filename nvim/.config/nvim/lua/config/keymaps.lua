@@ -23,5 +23,8 @@ map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "]e", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
 map("n", "[e", vim.diagnostic.goto_prev, { desc = "Prev Diagnostic" })
 
--- Show all diagnostics in a list (Quickfix)
+-- Shok all diagnostics in a list (Quickfix)
 map("n", "<leader>cl", vim.diagnostic.setqflist, { desc = "LSP Diagnostic List" })
+
+-- Reload configuration without restarting nvim
+map("n", "<leader>R", ":source $MYVIMRC<CR>", { desc = "Reload Neovim Config" })
