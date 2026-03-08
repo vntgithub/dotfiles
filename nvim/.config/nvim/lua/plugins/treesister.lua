@@ -11,6 +11,10 @@ return {
       "elixir", "heex", "eex",
       "ruby",
       "gomod", "go",
+      "dockerfile",
+      "json", "yaml",
+      "cpp",
+      "vue",
     },
     highlight = {
       enable = true,
