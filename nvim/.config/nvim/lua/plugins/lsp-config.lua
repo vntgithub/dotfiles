@@ -83,8 +83,6 @@ return {
 				"clangd",
 				"tailwindcss",
 				"eslint",
-				-- "ts_ls",
-				-- "vtsls",
 			}
 			for _, name in ipairs(servers) do
 				vim.lsp.config(name, { capabilities = capabilities })
