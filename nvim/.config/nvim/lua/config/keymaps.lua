@@ -1,17 +1,25 @@
+--Reload config
+vim.keymap.set("n", "<leader>rr", ":%so<CR>", { desc = "Reload config" })
+-- Copy relative path to clipboard using <leader>fr
+vim.keymap.set("n", "<leader>pp", ":let @+ = expand('%:.')<CR>", { desc = "Copy relative path" })
+-- Exit insert mode with jk
+vim.keymap.set("i", "jk", "<ESC>")
 -- Navigate vim panes better
-vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
-vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
-vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
-vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
+vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
+vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
+vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
+vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
 
--- Navigate to tmux panes silently
--- vim.keymap.set('n', '<c-k>', function() vim.fn.system('tmux select-pane -U') end, { silent = true })
--- vim.keymap.set('n', '<c-j>', function() vim.fn.system('tmux select-pane -D') end, { silent = true })
--- vim.keymap.set('n', '<c-h>', function() vim.fn.system('tmux select-pane -L') end, { silent = true })
--- vim.keymap.set('n', '<c-l>', function() vim.fn.system('tmux select-pane -R') end, { silent = true })
+-- Buffer management
+-- Close current buffer
+vim.keymap.set("n", "<leader>bd", ":bd<CR>", { desc = "Close current buffer" })
+-- Close all buffers
+vim.keymap.set("n", "<leader>ba", ":%bd<CR>", { desc = "Close all buffers" })
+-- Close all buffers except current
+vim.keymap.set("n", "<leader>bb", ":%bd|e#|bd#<CR>", { desc = "Close all buffers except current" })
 
 -- Clear search highlights
-vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
+vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>")
 vim.wo.number = true
 
 local map = vim.keymap.set
@@ -30,10 +38,10 @@ map("n", "<leader>cl", vim.diagnostic.setqflist, { desc = "LSP Diagnostic List" 
 map("n", "<leader>R", ":source $MYVIMRC<CR>", { desc = "Reload Neovim Config" })
 
 -- GitSigns
-vim.keymap.set('n', '<leader>gb', ':Gitsigns blame_line<CR>', { desc = 'Blame line' })
-vim.keymap.set('n', '<leader>gp', ':Gitsigns preview_hunk<CR>', { desc = 'Preview hunk' })
-vim.keymap.set('n', '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = 'Reset hunk' })
-vim.keymap.set('n', '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'Stage hunk' })
-vim.keymap.set('n', '<leader>gu', ':Gitsigns undo_stage_hunk<CR>', { desc = 'Undo stage hunk' })
-vim.keymap.set('n', '<leader>gd', ':Gitsigns diffthis<CR>', { desc = 'Diff this' })
-vim.keymap.set('n', '<leader>gl', ':Gitsigns preview_hunk_inline<CR>', { desc = 'Preview hunk inline' })
+vim.keymap.set("n", "<leader>gb", ":Gitsigns blame_line<CR>", { desc = "Blame line" })
+vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Preview hunk" })
+vim.keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", { desc = "Reset hunk" })
+vim.keymap.set("n", "<leader>gs", ":Gitsigns stage_hunk<CR>", { desc = "Stage hunk" })
+vim.keymap.set("n", "<leader>gu", ":Gitsigns undo_stage_hunk<CR>", { desc = "Undo stage hunk" })
+vim.keymap.set("n", "<leader>gd", ":Gitsigns diffthis<CR>", { desc = "Diff this" })
+vim.keymap.set("n", "<leader>gl", ":Gitsigns preview_hunk_inline<CR>", { desc = "Preview hunk inline" })
