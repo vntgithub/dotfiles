@@ -16,7 +16,6 @@ return {
 				"gopls",
 				"ruby_lsp",
 				"elixirls",
-				"ts_ls",
 				"vue_ls",
 				"tailwindcss",
 				"eslint",
@@ -49,7 +48,10 @@ return {
 				languages = { "vue" },
 				configNamespace = "typescript",
 			}
+
+			-- Configure all servers BEFORE enabling them
 			vim.lsp.config("vtsls", {
+				capabilities = capabilities,
 				settings = {
 					vtsls = {
 						tsserver = {
@@ -63,6 +65,7 @@ return {
 			})
 
 			vim.lsp.config("vue_ls", {
+				capabilities = capabilities,
 				settings = {
 					init_options = {
 						typescript = {
@@ -71,23 +74,6 @@ return {
 					},
 				},
 			})
-
-			vim.lsp.enable("vue_ls")
-			vim.lsp.enable("vtsls")
-
-			local servers = {
-				"lua_ls",
-				"gopls",
-				"ruby_lsp",
-				"elixir_ls",
-				"clangd",
-				"tailwindcss",
-				"eslint",
-			}
-			for _, name in ipairs(servers) do
-				vim.lsp.config(name, { capabilities = capabilities })
-				vim.lsp.enable(name)
-			end
 
 			vim.lsp.config("elixir_ls", {
 				-- Mason automatically puts the executable in Neovim's path
@@ -107,6 +93,35 @@ return {
 					},
 				},
 			})
+
+			-- Simple servers that only need capabilities
+			local simple_servers = {
+				"lua_ls",
+				"gopls",
+				"ruby_lsp",
+				"clangd",
+				"tailwindcss",
+				"eslint",
+			}
+			for _, name in ipairs(simple_servers) do
+				vim.lsp.config(name, { capabilities = capabilities })
+			end
+
+			-- Enable all servers (after all configs are set)
+			local all_servers = {
+				"lua_ls",
+				"gopls",
+				"ruby_lsp",
+				"elixir_ls",
+				"clangd",
+				"tailwindcss",
+				"eslint",
+				"vtsls",
+				"vue_ls",
+			}
+			for _, name in ipairs(all_servers) do
+				vim.lsp.enable(name)
+			end
 
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				pattern = "*",
