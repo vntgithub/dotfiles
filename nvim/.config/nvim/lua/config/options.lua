@@ -74,14 +74,14 @@ local colors = {
 local groups = {
   -- Base interface
   Normal        = { fg = colors.fg, bg = colors.bg },
-  Visual        = { bg = colors.selection },
+  Visual        = { bg = colors.teal, fg = colors.bg },
   CursorLine    = { bg = "#2d393e" },
   ColorColumn   = { bg = "#2d393e" },
   LineNr        = { fg = colors.grey },
   CursorLineNr  = { fg = colors.teal, bold = true },
 
   -- Search and UI
-  Search        = { fg = colors.bg, bg = colors.teal },
+  Search        = { fg = colors.bg, bg = colors.magenta },
   VertSplit     = { fg = colors.selection, bg = colors.bg },
   StatusLine    = { fg = colors.fg, bg = colors.selection },
 

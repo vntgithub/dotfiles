@@ -1,0 +1,57 @@
+gui:
+  # Nerdfonts version for icons (leave empty for no nerd font)
+  nerdFontsVersion: ""
+
+  theme:
+    # Border color of focused panels
+    activeBorderColor:
+      - "#1ABB9B" # teal
+      - bold
+
+    # Border color of unfocused panels
+    inactiveBorderColor:
+      - "#585858" # grey
+
+    # Foreground color for search matches
+    searchingActiveBorderColor:
+      - "#ba8baf" # magenta
+      - bold
+
+    # Background color for selected lines/items
+    selectedLineBgColor:
+      - "#2d393e" # cursorline bg
+
+    # Foreground color for selected range (visual mode)
+    selectedRangeBgColor:
+      - "#2B2C2B" # selection
+
+    # Background color for cherry-picked commits
+    cherryPickedCommitBgColor:
+      - "#1ABB9B" # teal
+
+    # Foreground color for cherry-picked commits
+    cherryPickedCommitFgColor:
+      - "#222D31" # bg
+
+    # Marker color for unmerged commits in rebase
+    markedBaseCommitBgColor:
+      - "#f7ca88" # yellow
+
+    # Marker foreground for unmerged commits in rebase
+    markedBaseCommitFgColor:
+      - "#222D31" # bg
+
+    # Text color for unstaged changes
+    unstagedChangesColor:
+      - "#ab4642" # red
+
+    # Default text color
+    defaultFgColor:
+      - "#d8d8d8" # fg
+
+    # Options panel background
+    optionsTextColor:
+      - "#7cafc2" # blue
+
+  authorColors:
+    "*": "#1ABB9B" # teal as default author color
