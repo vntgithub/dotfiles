@@ -1,57 +1,50 @@
 gui:
-  # Nerdfonts version for icons (leave empty for no nerd font)
-  nerdFontsVersion: ""
-
+  # Enable Nerd Fonts (since you use them in Neovim)
+  nerdFontsVersion: "3"
   theme:
-    # Border color of focused panels
+    # Border color of focused panels (Cursor Cyan)
     activeBorderColor:
-      - "#1ABB9B" # teal
+      - "#88c0d0"
       - bold
-
-    # Border color of unfocused panels
+    # Border color of unfocused panels (Nord Grey)
     inactiveBorderColor:
-      - "#585858" # grey
-
-    # Foreground color for search matches
+      - "#4c566a"
+    # Search matches (Cursor Magenta)
     searchingActiveBorderColor:
-      - "#ba8baf" # magenta
+      - "#b48ead"
       - bold
-
-    # Background color for selected lines/items
+    # Background color for selected items (Matches Neovim Visual)
     selectedLineBgColor:
-      - "#2d393e" # cursorline bg
-
-    # Foreground color for selected range (visual mode)
+      - "#343b49"
+    # Foreground color for selected range (Matches Neovim Selection)
     selectedRangeBgColor:
-      - "#2B2C2B" # selection
-
-    # Background color for cherry-picked commits
+      - "#434c5e"
+    # Cherry-picked commits (Cyan contrast)
     cherryPickedCommitBgColor:
-      - "#1ABB9B" # teal
-
-    # Foreground color for cherry-picked commits
+      - "#434c5e"
     cherryPickedCommitFgColor:
-      - "#222D31" # bg
-
-    # Marker color for unmerged commits in rebase
+      - "#88c0d0"
+    # Rebase markers (Yellow)
     markedBaseCommitBgColor:
-      - "#f7ca88" # yellow
-
-    # Marker foreground for unmerged commits in rebase
+      - "#ebcb8b"
     markedBaseCommitFgColor:
-      - "#222D31" # bg
-
-    # Text color for unstaged changes
+      - "#191c22"
+    # Git Status Colors
     unstagedChangesColor:
-      - "#ab4642" # red
-
-    # Default text color
+      - "#bf616a" # Red
+    stagedChangesColor:
+      - "#a3be8c" # Green
+    # Default text color (Matches your Cursor foreground)
     defaultFgColor:
-      - "#d8d8d8" # fg
-
-    # Options panel background
+      - "#7b88a1"
+    # Options/Keybind text (Blue)
     optionsTextColor:
-      - "#7cafc2" # blue
-
+      - "#81a1c1"
+  # Author colors (using your Cyan accent)
   authorColors:
-    "*": "#1ABB9B" # teal as default author color
+    "*": "#88c0d0"
+# Optional: Add these to make the UI feel even more like Cursor/Neovim
+git:
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never

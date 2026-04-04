@@ -57,53 +57,88 @@ opt.smartindent = true -- Automatically insert the correct indentation on new li
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
-
+-- ==============================================================================
+-- Cursor-Inspired Palette (Based on your JSON)
+-- ==============================================================================
 local colors = {
-  bg        = "#222D31",
-  fg        = "#d8d8d8",
-  selection = "#2B2C2B",
-  teal      = "#1ABB9B", -- The signature Maia color
-  green     = "#7E807E",
-  red       = "#ab4642",
-  yellow    = "#f7ca88",
-  blue      = "#7cafc2",
-  magenta   = "#ba8baf",
-  grey      = "#585858",
+  bg           = "#1e2127", -- editor.background
+  bg_dark      = "#191c22", -- activityBar.background / sideBar.background
+  bg_highlight = "#20242c", -- editorHoverWidget.background
+  fg           = "#7b88a1", -- editor.foreground (soft blue-grey)
+  fg_bright    = "#d8dee9", -- editorCursor.foreground / variable.other
+  selection    = "#434c5e", -- editor.selectionBackground (with transparency)
+  cursor_line  = "#2a2d35", -- editor.lineHighlightBackground
+
+  -- Accent Colors
+  cyan         = "#88c0d0", -- entity.name.function / button.background
+  teal         = "#8fbcbb", -- entity.name.class
+  green        = "#a3be8c", -- string
+  red          = "#bf616a", -- editorError.foreground
+  orange       = "#d08770", -- storage.type.annotation
+  yellow       = "#ebcb8b", -- constant.character
+  blue         = "#81a1c1", -- keyword / storage
+  magenta      = "#b48ead", -- constant.numeric
+  grey         = "#4c566a", -- editorLineNumber.foreground
+  comment      = "#687692", -- comment foreground
 }
 
 local groups = {
-  -- Base interface
-  Normal        = { fg = colors.fg, bg = colors.bg },
-  Visual        = { bg = colors.blue, fg = colors.bg },
-  CursorLine    = { bg = "#2d393e" },
-  ColorColumn   = { bg = "#2d393e" },
-  LineNr        = { fg = colors.grey },
-  CursorLineNr  = { fg = colors.teal, bold = true },
-  BuffLine      = { bg = colors.bg },
+  -- Core UI
+  Normal       = { fg = colors.fg, bg = colors.bg },
+  NormalFloat  = { fg = colors.fg_bright, bg = colors.bg_dark },
+  FloatBorder  = { fg = "#272c36", bg = colors.bg_dark },
+  CursorLine   = { bg = colors.cursor_line },
+  Visual       = { bg = "#343b49" },
+  LineNr       = { fg = colors.grey },
+  CursorLineNr = { fg = "#687692", bold = true }, -- editorLineNumber.activeForeground
 
-  -- Search and UI
-  Search        = { fg = colors.bg, bg = colors.magenta },
-  VertSplit     = { fg = colors.selection, bg = colors.bg },
-  StatusLine    = { fg = colors.fg, bg = colors.selection },
+  -- Search & Selection
+  Search     = { bg = "#848606", fg = "#ffffff"}, -- Mimics #88c0d0 with 40% opacity
+  IncSearch  = { bg = "#5d818a", fg = "#ffffff"}, -- Mimics #88c0d0 with 60% opacity
+  CurSearch  = { bg = "#5d818a", fg = "#ffffff"}, -- Current match (usually brighter)
+  -- Split & Gutter
+  WinSeparator = { fg = "#26292f" }, -- Solid equivalent of 5% white on #1e2127
+  SignColumn   = { bg = colors.bg },
+  EndOfBuffer  = { fg = colors.bg },
 
-  -- Syntax Highlighting
-  Comment       = { fg = colors.grey, italic = true },
-  Constant      = { fg = colors.blue },
-  String        = { fg = colors.yellow },
-  Function      = { fg = colors.teal },
-  Statement     = { fg = colors.magenta },
-  Keyword       = { fg = colors.magenta },
-  Type          = { fg = colors.teal },
-  Identifier    = { fg = colors.fg },
-  PreProc       = { fg = colors.yellow },
-  Special       = { fg = colors.blue },
-  Todo          = { fg = colors.bg, bg = colors.yellow, bold = true },
+  -- Syntax (Standard)
+  Comment      = { fg = colors.comment, italic = true },
+  Constant     = { fg = colors.magenta },
+  String       = { fg = colors.green },
+  Character    = { fg = colors.yellow },
+  Number       = { fg = colors.magenta },
+  Boolean      = { fg = colors.magenta },
+  Float        = { fg = colors.magenta },
 
-  -- TreeSitter (For modern Neovim)
-  ["@variable"] = { fg = colors.fg },
-  ["@function"] = { fg = colors.teal },
-  ["@keyword"]  = { fg = colors.magenta },
-  ["@string"]   = { fg = colors.yellow },
+  Identifier   = { fg = colors.fg_bright },
+  Function     = { fg = colors.cyan },
+  Statement    = { fg = colors.blue },
+  Keyword      = { fg = colors.blue },
+  PreProc      = { fg = "#5e81ac" }, -- meta.preprocessor
+  Type         = { fg = colors.teal },
+  Special      = { fg = colors.blue },
+  Underlined   = { underline = true },
+  Error        = { fg = colors.red },
+  Todo         = { fg = colors.yellow, bold = true },
+
+  -- TreeSitter (Neovim 0.8+)
+  ["@variable"]           = { fg = colors.fg_bright },
+  ["@variable.builtin"]   = { fg = colors.blue, italic = true },
+  ["@function"]           = { fg = colors.cyan },
+  ["@function.builtin"]   = { fg = colors.cyan },
+  ["@keyword"]            = { fg = colors.blue },
+  ["@keyword.operator"]   = { fg = colors.blue },
+  ["@property"]           = { fg = colors.fg_bright },
+  ["@field"]              = { fg = colors.fg_bright },
+  ["@type"]               = { fg = colors.teal },
+  ["@type.builtin"]       = { fg = colors.blue },
+  ["@constant"]           = { fg = colors.magenta },
+  ["@parameter"]          = { fg = colors.fg_bright },
+  ["@punctuation.bracket"] = { fg = "#eceff4" },
+  ["@punctuation.delimiter"] = { fg = "#eceff4" },
+  ["@tag"]                = { fg = colors.blue },
+  ["@tag.attribute"]      = { fg = colors.teal, italic = true },
+  ["@attribute"]          = { fg = colors.orange },
 }
 
 -- Apply the colors

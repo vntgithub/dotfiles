@@ -3,27 +3,27 @@ gui:
   showIcons: false
 
   theme:
-    # Border color of focused panels (#1ABB9B)
+    # Border color of focused panels (#88c0d0)
     activeBorderColor:
-      - "#1ABB9B"
+      - "#88c0d0"
       - bold
 
-    # Border color of unfocused panels (#585858)
+    # Border color of unfocused panels (#4c566a)
     inactiveBorderColor:
-      - "#585858"
+      - "#4c566a"
 
-    # Background color for selected lines (#2d393e)
+    # Background color for selected lines (#21242b)
     selectedLineBgColor:
-      - "#2d393e"
+      - "#21242b"
 
-    # Foreground color for selected range/options (#7cafc2)
+    # Foreground color for selected range/options (#81a1c1)
     optionsTextColor:
-      - "#7cafc2"
+      - "#81a1c1"
 
-    # Default text color (#d8d8d8)
+    # Default text color (#d8dee9)
     defaultFgColor:
-      - "#d8d8d8"
+      - "#d8dee9"
 
     # Mapping your 'unstaged' red to entity states (stopped containers/errors)
     entityStatColor:
-      - "#ab4642"
+      - "#bf616a"
