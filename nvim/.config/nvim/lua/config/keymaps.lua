@@ -36,3 +36,4 @@ vim.keymap.set("n", "<leader>gh", ":Gitsigns toggle_current_line_blame<CR>", { d
 vim.keymap.set("n", "<leader>gH", ":Gitsigns toggle_linehl<CR>", { desc = "Toggle line highlight" })
 vim.keymap.set("n", "<leader>gS", ":Gitsigns stage_buffer<CR>", { desc = "Stage buffer" })
 vim.keymap.set("n", "<leader>gR", ":Gitsigns reset_buffer<CR>", { desc = "Reset buffer" })
+vim.keymap.set("n", "<leader>gP", ":Gitsigns next_hunk<CR>", { desc = "Next hunks" })
