@@ -1,29 +1,16 @@
 gui:
-  # Matching your nerdFontsVersion: ""
   showIcons: false
-
   theme:
-    # Border color of focused panels (#88c0d0)
     activeBorderColor:
-      - "#88c0d0"
+      - "#cba6f7"
       - bold
-
-    # Border color of unfocused panels (#4c566a)
     inactiveBorderColor:
-      - "#4c566a"
-
-    # Background color for selected lines (#21242b)
+      - "#6c7086"
     selectedLineBgColor:
-      - "#21242b"
-
-    # Foreground color for selected range/options (#81a1c1)
+      - "#313244"
     optionsTextColor:
-      - "#81a1c1"
-
-    # Default text color (#d8dee9)
+      - "#89b4fa"
     defaultFgColor:
-      - "#d8dee9"
-
-    # Mapping your 'unstaged' red to entity states (stopped containers/errors)
+      - "#cdd6f4"
     entityStatColor:
-      - "#bf616a"
+      - "#f38ba8"

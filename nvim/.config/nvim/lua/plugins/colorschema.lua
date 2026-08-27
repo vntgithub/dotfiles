@@ -8,15 +8,30 @@ return {
       require("catppuccin").setup({
         flavour = "mocha",
         transparent_background = true,
+        term_colors = true,
         float = {
           transparent = true,
         },
+        auto_integrations = true,
         integrations = {
-          telescope = true,
-          bufferline = true,
-          gitsigns = true,
-          cmp = true,
-          native_lsp = { enabled = true },
+          -- Match tmux/kitty mauve accent (default lualine NORMAL is blue)
+          lualine = {
+            all = function(colors)
+              return {
+                normal = {
+                  a = { bg = colors.mauve, fg = colors.mantle, gui = "bold" },
+                  b = { bg = colors.surface0, fg = colors.mauve },
+                },
+                visual = {
+                  a = { bg = colors.lavender, fg = colors.mantle, gui = "bold" },
+                  b = { bg = colors.surface0, fg = colors.lavender },
+                },
+                inactive = {
+                  a = { fg = colors.mauve },
+                },
+              }
+            end,
+          },
         },
       })
       vim.cmd.colorscheme("catppuccin")

@@ -1,50 +1,37 @@
 gui:
-  # Enable Nerd Fonts (since you use them in Neovim)
   nerdFontsVersion: "3"
   theme:
-    # Border color of focused panels (Cursor Cyan)
     activeBorderColor:
-      - "#88c0d0"
+      - "#cba6f7"
       - bold
-    # Border color of unfocused panels (Nord Grey)
     inactiveBorderColor:
-      - "#4c566a"
-    # Search matches (Cursor Magenta)
+      - "#6c7086"
     searchingActiveBorderColor:
-      - "#b48ead"
+      - "#f9e2af"
       - bold
-    # Background color for selected items (Matches Neovim Visual)
     selectedLineBgColor:
-      - "#343b49"
-    # Foreground color for selected range (Matches Neovim Selection)
+      - "#313244"
     selectedRangeBgColor:
-      - "#434c5e"
-    # Cherry-picked commits (Cyan contrast)
+      - "#45475a"
     cherryPickedCommitBgColor:
-      - "#434c5e"
+      - "#45475a"
     cherryPickedCommitFgColor:
-      - "#88c0d0"
-    # Rebase markers (Yellow)
+      - "#cba6f7"
     markedBaseCommitBgColor:
-      - "#ebcb8b"
+      - "#f9e2af"
     markedBaseCommitFgColor:
-      - "#191c22"
-    # Git Status Colors
+      - "#11111b"
     unstagedChangesColor:
-      - "#bf616a" # Red
+      - "#f38ba8"
     stagedChangesColor:
-      - "#a3be8c" # Green
-    # Default text color (Matches your Cursor foreground)
+      - "#a6e3a1"
     defaultFgColor:
-      - "#7b88a1"
-    # Options/Keybind text (Blue)
+      - "#cdd6f4"
     optionsTextColor:
-      - "#81a1c1"
-  # Author colors (using your Cyan accent)
+      - "#89b4fa"
   authorColors:
-    "*": "#88c0d0"
-# Optional: Add these to make the UI feel even more like Cursor/Neovim
+    "*": "#b4befe"
 git:
   diffRenderers:
     - colorArg: always
-      command: delta --dark --paging=never
+      command: delta --dark --paging=never --syntax-theme=ansi
