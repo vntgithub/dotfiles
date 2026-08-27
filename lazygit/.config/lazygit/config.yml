@@ -45,6 +45,6 @@ gui:
     "*": "#88c0d0"
 # Optional: Add these to make the UI feel even more like Cursor/Neovim
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --dark --paging=never
+      command: delta --dark --paging=never

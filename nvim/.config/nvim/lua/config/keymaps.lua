@@ -3,7 +3,6 @@ vim.keymap.set("n", "<leader>rr", ":source $MYVIMRC<CR>", { desc = "Reload confi
 vim.keymap.set("n", "<leader>pp", ":let @+ = expand('%:.')<CR>", { desc = "Copy relative path" })
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with j k" })
 vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "Clear search highlights" })
-vim.wo.number = true
 
 -- Navigate vim panes better
 vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")

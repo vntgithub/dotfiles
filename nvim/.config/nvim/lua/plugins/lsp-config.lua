@@ -15,12 +15,13 @@ return {
 				"lua_ls",
 				"gopls",
 				"ruby_lsp",
-        "elixirls",
+				"elixirls",
 				"vue_ls",
 				"tailwindcss",
 				"eslint",
 				"clangd",
 				"vtsls",
+				"basedpyright",
 			},
 		},
 	},
@@ -29,12 +30,6 @@ return {
 		lazy = false,
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
-		},
-		opts = {
-			servers = {
-				-- copilot.lua only works with its own copilot lsp server
-				copilot = { enabled = false },
-			},
 		},
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -88,6 +83,26 @@ return {
 				},
 			})
 
+			vim.lsp.config("basedpyright", {
+				capabilities = capabilities,
+				settings = {
+					basedpyright = {
+						analysis = {
+							typeCheckingMode = "basic", -- "basic", "standard", or "strict"
+							autoSearchPaths = true,
+							useLibraryCodeForTypes = true,
+							diagnosticMode = "openFilesOnly",
+							inlayHints = {
+								variableTypes = true,
+								callArgumentNames = true,
+								functionReturnTypes = true,
+								genericTypes = true,
+							},
+						},
+					},
+				},
+			})
+
 			-- Simple servers that only need capabilities
 			local simple_servers = {
 				"lua_ls",
@@ -112,15 +127,18 @@ return {
 				"eslint",
 				"vtsls",
 				"vue_ls",
+				"basedpyright",
 			}
 			for _, name in ipairs(all_servers) do
 				vim.lsp.enable(name)
 			end
 
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				pattern = "*",
+			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(args)
-					require("conform").format({ bufnr = args.buf })
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if client and client:supports_method("textDocument/inlayHint") then
+						vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+					end
 				end,
 			})
 			-- LSP keymaps

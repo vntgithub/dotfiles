@@ -8,23 +8,10 @@ return {
       tab_char = "┆",
     },
     scope = {
-      enabled = false, -- This highlights the specific 'if' block you are inside
-      show_start = false,
-      show_end = false,
-      char = "▎",
-      highlight = { "Function", "Label" },
+      enabled = false,
     },
     exclude = {
-      filetypes = {
-        "help",
-        "alpha",
-        "dashboard",
-        "neo-tree",
-        "Trouble",
-        "lazy",
-        "mason",
-      },
+      filetypes = { "help", "lazy", "mason" },
     },
   },
 }
-

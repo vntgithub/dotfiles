@@ -22,3 +22,15 @@ esac
 # pnpm end
 
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+alias lzd='lazydocker'
+alias lzg='lazygit'
+
+# export VAAPI_MPEG4_ENABLED=true
+# export LIBVA_DRIVER_NAME=nvidia
+# export NVD_BACKEND=direct
+# export MOZ_DISABLE_RDD_SANDBOX=1 # Required for Firefox, but occasionally helps Chromium forks
+#
+# export MOZ_ENABLE_WAYLAND=1
+# export VAHEADER_ALLOW_CROSS_COMPILATION=1
+# export LIBVA_DRIVER_NAME=nvidia
+# export NVD_BACKEND=direct
