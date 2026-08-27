@@ -25,77 +25,77 @@
     },
     "modules": [
         {
-            "key": "{#6c7086}╭───────────╮",
+            "key": "{#separator}╭───────────╮",
             "type": "custom"
         },
         {
-            "key": "{#6c7086}│ {#keys} user    {#6c7086}│",
+            "key": "{#separator}│ {#keys} user    {#separator}│",
             "type": "title",
             "format": "{user-name}"
         },
         {
-            "key": "{#6c7086}│ {#keys}󰇅 hname   {#6c7086}│",
+            "key": "{#separator}│ {#keys}󰇅 hname   {#separator}│",
             "type": "title",
             "format": "{host-name}"
         },
         {
             "type": "command",
-            "key": "{#6c7086}│ {#keys}󱦟 os age  {#6c7086}│",
+            "key": "{#separator}│ {#keys}󱦟 os age  {#separator}│",
             "text": "printf \"%s days\" \"$(( ($(date +%s) - $(stat -c %W /)) / 86400 ))\""
         },
         {
-            "key": "{#6c7086}│ {#keys}󰅐 uptime  {#6c7086}│",
+            "key": "{#separator}│ {#keys}󰅐 uptime  {#separator}│",
             "type": "uptime"
         },
         {
-            "key": "{#6c7086}│ {#keys}{icon} distro  {#6c7086}│",
+            "key": "{#separator}│ {#keys}{icon} distro  {#separator}│",
             "type": "os"
         },
         {
-            "key": "{#6c7086}│ {#keys} kernel  {#6c7086}│",
+            "key": "{#separator}│ {#keys} kernel  {#separator}│",
             "type": "kernel"
         },
         {
-            "key": "{#6c7086}│ {#keys} wm      {#6c7086}│",
+            "key": "{#separator}│ {#keys} wm      {#separator}│",
             "type": "wm"
         },
         {
-            "key": "{#6c7086}│ {#keys}󰇄 desktop {#6c7086}│",
+            "key": "{#separator}│ {#keys}󰇄 desktop {#separator}│",
             "type": "de"
         },
         {
-            "key": "{#6c7086}│ {#keys} term    {#6c7086}│",
+            "key": "{#separator}│ {#keys} term    {#separator}│",
             "type": "terminal"
         },
         {
-            "key": "{#6c7086}│ {#keys} shell   {#6c7086}│",
+            "key": "{#separator}│ {#keys} shell   {#separator}│",
             "type": "shell"
         },
         {
-            "key": "{#6c7086}│ {#keys}󰍛 cpu     {#6c7086}│",
+            "key": "{#separator}│ {#keys}󰍛 cpu     {#separator}│",
             "type": "cpu",
             "showPeCoreCount": true
         },
         {
-            "key": "{#6c7086}│ {#keys}󰉉 disk    {#6c7086}│",
+            "key": "{#separator}│ {#keys}󰉉 disk    {#separator}│",
             "type": "disk",
             "folders": "/"
         },
         {
-            "key": "{#6c7086}│ {#keys} memory  {#6c7086}│",
+            "key": "{#separator}│ {#keys} memory  {#separator}│",
             "type": "memory"
         },
         {
-            "key": "{#6c7086}├───────────┤",
+            "key": "{#separator}├───────────┤",
             "type": "custom"
         },
         {
-            "key": "{#6c7086}│ {#keys} colors  {#6c7086}│",
+            "key": "{#separator}│ {#keys} colors  {#separator}│",
             "type": "colors",
             "symbol": "circle"
         },
         {
-            "key": "{#6c7086}╰───────────╯",
+            "key": "{#separator}╰───────────╯",
             "type": "custom"
         }
     ]
