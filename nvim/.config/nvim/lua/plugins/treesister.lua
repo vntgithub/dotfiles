@@ -3,7 +3,6 @@ return {
 	lazy = false,
 	build = ":TSUpdate",
 	config = function()
-		-- 1. Install parsers
 		require("nvim-treesitter").install({
 			"lua",
 			"vim",
@@ -25,13 +24,18 @@ return {
 			"yaml",
 			"cpp",
 			"vue",
+			"python",
+			"markdown",
+			"markdown_inline",
+			"bash",
+			"gitcommit",
+			"toml",
 		})
 
-		-- 2. Enable Treesitter highlighting (IMPORTANT)
 		vim.api.nvim_create_autocmd("FileType", {
 			callback = function(args)
-				-- start treesitter for this buffer
 				pcall(vim.treesitter.start, args.buf)
+				vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 			end,
 		})
 	end,

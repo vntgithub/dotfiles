@@ -1,38 +1,60 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		lazy = false,
-		config = function()
-			require("mason").setup()
+		cmd = "Mason",
+		build = ":MasonUpdate",
+		opts = {
+			ensure_installed = {
+				"stylua",
+				"prettierd",
+				"goimports",
+				"clang-format",
+				"black",
+				"isort",
+				"rubocop",
+			},
+		},
+		config = function(_, opts)
+			local ensure_installed = opts.ensure_installed or {}
+			opts.ensure_installed = nil
+			require("mason").setup(opts)
+			local mr = require("mason-registry")
+			mr.refresh(function()
+				for _, tool in ipairs(ensure_installed) do
+					if mr.has_package(tool) then
+						local p = mr.get_package(tool)
+						if not p:is_installed() then
+							p:install()
+						end
+					end
+				end
+			end)
 		end,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		lazy = false,
+		lazy = true,
+	},
+	{
+		"folke/lazydev.nvim",
+		ft = "lua",
 		opts = {
-			auto_install = true,
-			ensure_installed = {
-				"lua_ls",
-				"gopls",
-				"ruby_lsp",
-				"elixirls",
-				"vue_ls",
-				"tailwindcss",
-				"eslint",
-				"clangd",
-				"vtsls",
-				"basedpyright",
+			library = {
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 			},
 		},
 	},
 	{
 		"neovim/nvim-lspconfig",
-		lazy = false,
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
 		},
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			vim.lsp.config("*", { capabilities = capabilities })
 
 			local vue_language_server_path = vim.fn.stdpath("data")
 				.. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
@@ -44,9 +66,7 @@ return {
 				configNamespace = "typescript",
 			}
 
-			-- Configure all servers BEFORE enabling them
 			vim.lsp.config("vtsls", {
-				capabilities = capabilities,
 				settings = {
 					vtsls = {
 						tsserver = {
@@ -60,18 +80,14 @@ return {
 			})
 
 			vim.lsp.config("vue_ls", {
-				capabilities = capabilities,
-				settings = {
-					init_options = {
-						typescript = {
-							tsdk = "",
-						},
+				init_options = {
+					typescript = {
+						tsdk = "",
 					},
 				},
 			})
 
 			vim.lsp.config("elixirls", {
-				capabilities = capabilities,
 				root_markers = { "mix.exs", ".git" },
 				settings = {
 					elixirLS = {
@@ -84,11 +100,10 @@ return {
 			})
 
 			vim.lsp.config("basedpyright", {
-				capabilities = capabilities,
 				settings = {
 					basedpyright = {
 						analysis = {
-							typeCheckingMode = "basic", -- "basic", "standard", or "strict"
+							typeCheckingMode = "basic",
 							autoSearchPaths = true,
 							useLibraryCodeForTypes = true,
 							diagnosticMode = "openFilesOnly",
@@ -103,51 +118,62 @@ return {
 				},
 			})
 
-			-- Simple servers that only need capabilities
-			local simple_servers = {
-				"lua_ls",
-				"gopls",
-				"ruby_lsp",
-				"clangd",
-				"tailwindcss",
-				"eslint",
-			}
-			for _, name in ipairs(simple_servers) do
-				vim.lsp.config(name, { capabilities = capabilities })
-			end
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						workspace = {
+							checkThirdParty = false,
+						},
+						completion = {
+							callSnippet = "Replace",
+						},
+						hint = {
+							enable = true,
+							setType = false,
+							paramType = true,
+						},
+					},
+				},
+			})
 
-			-- Enable all servers (after all configs are set)
-			local all_servers = {
-				"lua_ls",
-				"gopls",
-				"ruby_lsp",
-				"elixirls",
-				"clangd",
-				"tailwindcss",
-				"eslint",
-				"vtsls",
-				"vue_ls",
-				"basedpyright",
-			}
-			for _, name in ipairs(all_servers) do
-				vim.lsp.enable(name)
-			end
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"lua_ls",
+					"gopls",
+					"ruby_lsp",
+					"elixirls",
+					"vue_ls",
+					"tailwindcss",
+					"eslint",
+					"clangd",
+					"vtsls",
+					"basedpyright",
+				},
+				automatic_enable = true,
+			})
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(args)
+					local bufnr = args.buf
 					local client = vim.lsp.get_client_by_id(args.data.client_id)
 					if client and client:supports_method("textDocument/inlayHint") then
-						vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+						vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 					end
+
+					local map = function(mode, lhs, rhs, desc)
+						vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+					end
+
+					map("n", "gd", vim.lsp.buf.definition, "Go to definition")
+					map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+					map("n", "gI", vim.lsp.buf.implementation, "Go to implementation")
+					map("n", "gy", vim.lsp.buf.type_definition, "Go to type definition")
+					map("n", "K", vim.lsp.buf.hover, "Hover")
+					map("n", "gK", vim.lsp.buf.signature_help, "Signature help")
+					map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
+					map("n", "<leader>cr", vim.lsp.buf.rename, "Rename")
 				end,
 			})
-			-- LSP keymaps
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-			vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References" })
-			vim.keymap.set("n", "ca", vim.lsp.buf.code_action, { desc = "Code action" })
-			vim.keymap.set("n", "gf", vim.lsp.buf.format, { desc = "Format" })
-			vim.keymap.set("n", "rn", vim.lsp.buf.rename, { desc = "Rename" })
 		end,
 	},
 }
