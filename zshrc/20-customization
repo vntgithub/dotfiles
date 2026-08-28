@@ -1,0 +1,63 @@
+# -----------------------------------------------------
+# CUSTOMIZATION
+# -----------------------------------------------------
+POSH=agnoster
+
+# -----------------------------------------------------
+# oh-myzsh themes: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# -----------------------------------------------------
+# ZSH_THEME=robbyrussell
+
+# -----------------------------------------------------
+# oh-my-zsh plugins
+# -----------------------------------------------------
+plugins=(
+    sudo
+    archlinux
+    zsh-autosuggestions
+    fast-syntax-highlighting
+    copyfile
+    copybuffer
+    dirhistory
+)
+
+# Set-up oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+# -----------------------------------------------------
+# Set-up FZF key bindings (CTRL R for fuzzy history finder)
+# -----------------------------------------------------
+_fzf_cache="${XDG_CACHE_HOME:-$HOME/.cache}/fzf-zsh-init.zsh"
+if [[ ! -s $_fzf_cache ]] || [[ ${commands[fzf]} -nt $_fzf_cache ]]; then
+    mkdir -p "${_fzf_cache:h}"
+    fzf --zsh >| $_fzf_cache
+fi
+source $_fzf_cache
+unset _fzf_cache
+
+# zsh history
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
+# -----------------------------------------------------
+# Prompt
+# -----------------------------------------------------
+_omp_config="$HOME/.config/ohmyposh/zen.toml"
+_omp_cache="${XDG_CACHE_HOME:-$HOME/.cache}/oh-my-posh-init.zsh"
+if [[ ! -s $_omp_cache ]] || [[ ${commands[oh-my-posh]} -nt $_omp_cache ]] || [[ $_omp_config -nt $_omp_cache ]]; then
+    mkdir -p "${_omp_cache:h}"
+    # --print dumps the full script; CURSOR_AGENT= avoids empty output inside Cursor agent
+    CURSOR_AGENT= oh-my-posh init zsh --print --config $_omp_config >| $_omp_cache
+fi
+if [[ -s $_omp_cache ]]; then
+    source $_omp_cache
+else
+    eval "$(CURSOR_AGENT= oh-my-posh init zsh --config $_omp_config)"
+fi
+unset _omp_cache _omp_config
+# eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/EDM115-newline.omp.json)"
+
+# Shipped Theme
+# eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/agnoster.omp.json)"
