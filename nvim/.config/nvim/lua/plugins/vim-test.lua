@@ -15,3 +15,4 @@ return {
     vim.g["test#elixir#exunit#file_pattern"] = "\\v(_test\\.exs)$"
   end,
 }
+
