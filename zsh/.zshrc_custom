@@ -42,3 +42,5 @@ alias lzg='lazygit'
 # export VAHEADER_ALLOW_CROSS_COMPILATION=1
 # export LIBVA_DRIVER_NAME=nvidia
 # export NVD_BACKEND=direct
+# Fix slow bracketed paste rendering in Zsh
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
